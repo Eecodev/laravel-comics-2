@@ -5,7 +5,8 @@
 @section('content')
 <main>
     <section class="container">
-        <form action="{{route('comics.store')}}" method="POST">
+        <h3 class="mt-5">Add new Comic</h3>
+        <form action="{{route('comics.store')}}" method="POST" class="create-form">
             {{-- token --}}
             @csrf
 
@@ -14,7 +15,7 @@
             <input class="form-control" type="text" id="price" name="price" placeholder="Inserisci price">
             <input class="form-control" type="text" id="type" name="type" placeholder="Inserisci type">
 
-            <button type="submit">Send</button>
+            <button type="submit" class="btn-form">Send</button>
         </form>
         {{-- <h1>Comics</h1>
         <div class="row">
