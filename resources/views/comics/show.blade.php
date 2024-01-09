@@ -13,7 +13,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{$comic->title}}</h5>
                         <p class="card-title">{!! substr($comic->description, 0, 100) . '...' !!}</p>
-                        <a href="#" class="btn btn-success">Info</a>
+                        <a href="{{route('comics.edit', $comic->id)}}" class="btn btn-success">Modifica</a>
                     </div>
                 </div>
             </div>
