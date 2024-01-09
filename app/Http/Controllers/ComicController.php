@@ -43,7 +43,7 @@ class ComicController extends Controller
         //prendo i dati del form dalla request
 
         $request->validate([
-            'title' => 'required|min:5|max:255|unique',
+            'title' => 'required|min:5|max:255',
             'description' => 'required|nullable',
             'price' => 'required|max:20',
             'type' => 'required',
