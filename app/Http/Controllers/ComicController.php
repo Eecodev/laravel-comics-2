@@ -23,7 +23,7 @@ class ComicController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * 
+     *
      */
     public function create()
     {
@@ -40,18 +40,28 @@ class ComicController extends Controller
     public function store(Request $request)
     {
         // andiamo a prendere tutti i dati del form
-        $formData = $request->all();
-        $new_comic = new Comic();
-        $new_comic->title = $formData['title'];
-        $new_comic->description = $formData["description"];
-        $new_comic->thumb = $formData["thumb"];
-        $new_comic->price = $formData["price"];
-        $new_comic->sale_date = $formData["sale_date"];
-        $new_comic->series = $formData["series"];
-        $new_comic->type = $formData["type"];
-        $new_comic->save();
+        //prendo i dati del form dalla request
 
-        return to_route('comics.index');
+        $request->validate([
+            'title' => 'required|min:5|max:255|unique',
+            'description' => 'required|nullable',
+            'price' => 'required|max:20',
+            'type' => 'required',
+
+        ]);
+
+        $formData = $request->all();
+        // creao un nuovo prodotto
+        // $new_comic = new Comic();
+        // assegno i valori del form al nuovo prodotto
+        // $new_comic->fill($formData);
+        // salvo il nuovo prodotto
+        // $new_comic->save();
+
+
+        $new_comic = Comic::create($formData);
+        // reindirizzo l'utente alla pagina del nuovo prodotto appena creato
+        return to_route('comics.show', $new_comic->id);
 
     }
 
@@ -70,11 +80,11 @@ class ComicController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Comic  $comic
-     * @return \Illuminate\Http\Response
+     *
      */
     public function edit(Comic $comic)
     {
-        //
+        return view('comics.edit', compact('comic'));
     }
 
     /**
@@ -82,21 +92,36 @@ class ComicController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Comic  $comic
-     * @return \Illuminate\Http\Response
+     *
      */
     public function update(Request $request, Comic $comic)
     {
         //
+        $formData = $request->all();
+        // $comic->title = $formData['title'];
+        // $comic->description = $formData["description"];
+        // $comic->thumb = $formData["thumb"];
+        // $comic->price = $formData["price"];
+        // $comic->sale_date = $formData["sale_date"];
+        // $comic->series = $formData["series"];
+        // $comic->type = $formData["type"];
+
+        $comic->fill($formData);
+        $comic->update();
+        return to_route('comics.index', $comic->id);
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Comic  $comic
-     * @return \Illuminate\Http\Response
+     *
      */
     public function destroy(Comic $comic)
     {
         //
+        $comic->delete();
+        return to_route('comics.index')->with('message', "The item $comic->title deleted successfully");
     }
 }
