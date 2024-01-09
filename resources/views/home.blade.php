@@ -8,7 +8,13 @@
         <h1>Dc Comics</h1>
         <div class="row gy-4">
             <div class="col">
-                Home page info
+                <ul class="pl-0">
+                    @foreach ($comics as $comic)
+                        <li>
+                            <a href="{{route('comics.show', $comic->id)}}">{{$comic->title}}</a>
+                        </li>
+                    @endforeach
+                </ul>
             </div>
         </div>
     </section>
