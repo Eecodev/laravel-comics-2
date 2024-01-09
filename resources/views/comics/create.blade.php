@@ -25,6 +25,7 @@
             @enderror
             <input class="form-control" type="text" id="description" name="description" placeholder="Inserisci description">
             <input class="form-control" type="text" id="price" name="price" placeholder="Inserisci price">
+            <input class="form-control" type="text" id="sale_date" name="sale_date" placeholder="Inserisci sale date">
             <input class="form-control" type="text" id="type" name="type" placeholder="Inserisci type">
 
             <button type="submit" class="btn-form">Send</button>
