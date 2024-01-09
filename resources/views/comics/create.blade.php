@@ -6,11 +6,23 @@
 <main>
     <section class="container">
         <h3 class="mt-5">Add new Comic</h3>
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <form action="{{route('comics.store')}}" method="POST" class="create-form">
             {{-- token --}}
             @csrf
 
             <input class="form-control" type="text" id="title" name="title" placeholder="Inserisci titolo">
+            @error('title')
+                <div class="invalid-feedback">{{$message}}</div>
+            @enderror
             <input class="form-control" type="text" id="description" name="description" placeholder="Inserisci description">
             <input class="form-control" type="text" id="price" name="price" placeholder="Inserisci price">
             <input class="form-control" type="text" id="type" name="type" placeholder="Inserisci type">
