@@ -27,8 +27,8 @@
             <input class="form-control" type="text" id="price" name="price" placeholder="Inserisci price">
             <input class="form-control" type="text" id="sale_date" name="sale_date" placeholder="Inserisci sale date">
             <select name="type" id="type" class="form-select" required>
-                <option value="comic book" value="{{old('description', $comic->type == 'comic book' ? 'selected' : '')}}">Comic Book</option>
-                <option value="graphic novel" value="{{old('description', $comic->type == 'graphic novel' ? 'selected' : '')}}">Graphic Novel</option>
+                <option value="comic book">Comic Book</option>
+                <option value="graphic novel">Graphic Novel</option>
             </select>
             <button type="submit" class="btn-form">Send</button>
         </form>

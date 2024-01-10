@@ -35,9 +35,15 @@ class UpdateComicRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.required' => 'Il capo titolo è obbligatorio',
+            'title.required' => 'Il campo titolo è obbligatorio',
             'title.min' => 'Il campo titolo deve avere almeno :min caratteri',
             'title.max' => 'Il campo titolo deve avere massimo :max caratteri',
+            'description.required' => 'Il campo description è obbligatorio',
+            'description.nullable' => 'Il campo description può non esistere',
+            'price.required' => 'Il campo price è obbligatorio',
+            'price.max' => 'Il campo price deve avere massimo :max caratteri',
+            'sale_date.required' => 'Il campo sale_date è obbligatorio',
+            'type.required' => 'Il campo type è obbligatorio',
         ];
     }
 }
