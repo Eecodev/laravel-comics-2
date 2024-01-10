@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Comic;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use App\Requests\StoreComicRequest;
-use App\Requests\UpdateComicRequest;
+// use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\StoreComicRequest;
+use App\Http\Requests\UpdateComicRequest;
 
 
 use Illuminate\View\View;
