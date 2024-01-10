@@ -10,12 +10,12 @@
           <div class="d-flex">
                 <a href="{{route('comics.create')}}" class="btn btn-primary">Create new comic</a>
                 <form action="{{route('comics.index')}}" method="GET">
-                    <select name="search" id="search">
+                    <select name="search" id="search" class="ms-3">
                         <option value="">All</option>
                         <option value="Comic Book">Comic Book</option>
                         <option value="Graphic Novel">Graphic Novel</option>
                     </select>
-                    <button type="submit" class="btn btn-danger ms-3">Search</button>
+                    <button type="submit" class="btn btn-success ms-3">Search</button>
                 </form>
           </div>
 
@@ -34,11 +34,11 @@
                         <h5 class="card-title">{{$comic->title}}</h5>
                         <p class="card-title">{!! substr($comic->description, 0, 100) . '...' !!}</p>
                         <div class="d-flex">
-                            <a href="{{route('comics.show', $comic->id)}}" class="btn btn-success">Info</a>
+                            <a href="{{route('comics.show', $comic->id)}}" class="btn btn-info border">Info</a>
                             <form action="{{route('comics.destroy', $comic->id)}}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="cancel-btn btn btn-danger" data-item-title="{{$comic->title}}">Delete</button>
+                                <button type="submit" class="cancel-btn btn btn-danger ms-3" data-item-title="{{$comic->title}}">Delete</button>
                             </form>
                         </div>
 

@@ -7,6 +7,9 @@ $fa-font-path: "../webfonts" !default;
 
 @import '~bootstrap/scss/bootstrap';
 
+body{
+    font-family: 'Slow Script';
+}
 .logo-head{
      width: 3.5em;
 }
