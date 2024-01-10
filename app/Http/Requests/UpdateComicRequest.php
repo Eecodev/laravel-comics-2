@@ -27,7 +27,7 @@ class UpdateComicRequest extends FormRequest
             'title' => 'required|min:5|max:255',
             'description' => 'required|nullable',
             'price' => 'required|max:20',
-            'sale_date' => 'required',
+            'sale_date' => 'required|date_format:m/d/y',
             'type' => 'required',
         ];
     }

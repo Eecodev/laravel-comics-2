@@ -25,7 +25,7 @@
             @enderror
             <input class="form-control" type="text" id="description" name="description" placeholder="Inserisci description">
             <input class="form-control" type="text" id="price" name="price" placeholder="Inserisci price">
-            <input class="form-control" type="text" id="sale_date" name="sale_date" placeholder="Inserisci sale date">
+            <input class="form-control" type="date" id="sale_date" name="sale_date" placeholder="Inserisci sale date">
             <select name="type" id="type" class="form-select" required>
                 <option value="comic book">Comic Book</option>
                 <option value="graphic novel">Graphic Novel</option>

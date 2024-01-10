@@ -10,11 +10,12 @@
           <div class="d-flex">
                 <a href="{{route('comics.create')}}" class="btn btn-primary">Create new comic</a>
                 <form action="{{route('comics.index')}}" method="GET">
-                    <select name="search" id="search" class="form-select">
+                    <select name="search" id="search">
                         <option value="">All</option>
                         <option value="Comic Book">Comic Book</option>
                         <option value="Graphic Novel">Graphic Novel</option>
                     </select>
+                    <button type="submit" class="btn btn-danger ms-3">Search</button>
                 </form>
           </div>
 
