@@ -7,15 +7,15 @@
     <section class="container">
         <div class="d-flex justify-content-between align-items-center">
           <h1>Comics</h1>
-          <div>
-            <a href="{{route('comics.create')}}" class="btn btn-primary">Create new comic</a>
-            <form action="{{route('comics.index')}}" method="GET">
-                <select name="search" id="search" class="form-select">
-                    <option value="">All</option>
-                    <option value="Comic Book">Comic Book</option>
-                    <option value="Graphic Novel">Graphic Novel</option>
-                </select>
-            </form>
+          <div class="d-flex">
+                <a href="{{route('comics.create')}}" class="btn btn-primary">Create new comic</a>
+                <form action="{{route('comics.index')}}" method="GET">
+                    <select name="search" id="search" class="form-select">
+                        <option value="">All</option>
+                        <option value="Comic Book">Comic Book</option>
+                        <option value="Graphic Novel">Graphic Novel</option>
+                    </select>
+                </form>
           </div>
 
         </div>
@@ -33,7 +33,7 @@
                         <h5 class="card-title">{{$comic->title}}</h5>
                         <p class="card-title">{!! substr($comic->description, 0, 100) . '...' !!}</p>
                         <div class="d-flex">
-                            <a href="#" class="btn btn-success">Info</a>
+                            <a href="{{route('comics.show', $comic->id)}}" class="btn btn-success">Info</a>
                             <form action="{{route('comics.destroy', $comic->id)}}">
                                 @csrf
                                 @method('DELETE')

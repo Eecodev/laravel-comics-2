@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Arr;
 use App\Http\Controllers\ComicController;
 use App\Http\Controllers\HomeController;
 /*
@@ -17,11 +18,11 @@ use App\Http\Controllers\HomeController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
-// Route::get('/comics{id}', function ($id) {
-//     $comics = config('db.comics');
-//     $comic = $comics[$id];
-//     return view('comics.show', compact('comic'));
-// })->name('comics.show');
+Route::get('/comics{id}', function ($id) {
+    $comics = config('db.comics');
+    $comic = $comics[$id];
+    return view('comics.show', compact('comic'));
+})->name('comics.show');
 
 // Route::get('/comics', function () {
 //     $comics = config('db.comics');
@@ -29,3 +30,5 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 // })->name('comics.index');
 
 Route::resource('comics', ComicController::class);
+
+

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comic;
 use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\StoreComicRequest;
 use App\Http\Requests\UpdateComicRequest;
 
@@ -73,6 +73,7 @@ class ComicController extends Controller
         // $new_comic->save();
 
         $formData = $request->validated();
+        //dd($request->all());
         $new_comic = Comic::create($formData);
         // reindirizzo l'utente alla pagina del nuovo prodotto appena creato
         return to_route('comics.show', $new_comic->id);
