@@ -7,7 +7,17 @@
     <section class="container">
         <div class="d-flex justify-content-between align-items-center">
           <h1>Comics</h1>
-          <a href="{{route('comics.create')}}" class="btn btn-primary">Create new comic</a>
+          <div>
+            <a href="{{route('comics.create')}}" class="btn btn-primary">Create new comic</a>
+            <form action="{{route('comics.index')}}" method="GET">
+                <select name="search" id="search" class="form-select">
+                    <option value="">All</option>
+                    <option value="Comic Book">Comic Book</option>
+                    <option value="Graphic Novel">Graphic Novel</option>
+                </select>
+            </form>
+          </div>
+
         </div>
 
         @if(session()->has('message'))
@@ -27,7 +37,7 @@
                             <form action="{{route('comics.destroy', $comic->id)}}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <button type="submit" class="cancel-btn btn btn-danger" data-item-title="{{$comic->title}}">Delete</button>
                             </form>
                         </div>
 
@@ -39,4 +49,5 @@
         </div>
     </section>
 </main>
+@include('partials.modal_delete');
 @endsection
