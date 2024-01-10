@@ -13,7 +13,6 @@
             <input class="form-control" type="text" value="{{old('title', $comic->title)}}" id="title" name="title" placeholder="Inserisci titolo">
             <input class="form-control" type="text" value="{{old('description', $comic->description)}}" id="description" name="description" placeholder="Inserisci description">
             <input class="form-control" type="text" value="{{old('price', $comic->price)}}" id="price" name="price" placeholder="Inserisci price">
-            <input class="form-control" type="text" value="{{old('type', $comic->type)}}" id="type" name="type" placeholder="Inserisci type">
 
             <select name="type" id="type" class="form-select" required>
                 <option value="comic book" value="{{old('description', $comic->type == 'comic book' ? 'selected' : '')}}">Comic Book</option>
