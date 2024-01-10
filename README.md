@@ -149,11 +149,21 @@ php artisan db:seed --class=UsersTableSeeder
 # preparo le rotte file web.php es. 
 Route::get('/books', [BookController::class, 'index'])->name('books.index');
 
+
+# creo model
+php artisan make:model Nome
+
+php artisan make:model Nome -rcms --request
+
 # creo controller
 php artisan make:controller NomeController
 
 
 # creo le views relative
+
+# creo form request per validazione
+
+php artisan make:request StorePostRequest
 
 ```
 xmas
