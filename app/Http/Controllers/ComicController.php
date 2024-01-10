@@ -4,7 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Comic;
 use Illuminate\Http\Request;
-//use Illuminate\View\View;
+use Illuminate\Support\Facades\Validator;
+use App\Requests\StoreComicRequest;
+use App\Requests\UpdateComicRequest;
+
+
+use Illuminate\View\View;
 
 class ComicController extends Controller
 {
@@ -13,10 +18,16 @@ class ComicController extends Controller
      *
      * @return \Illuminate\View\View;
      */
-    public function index()
+    public function index(Request $request): View
     {
         //
-        $comics = Comic::all();
+        // dd($request->query());
+        if(!empty($request->query('search'))){
+            $search = $request->query('search');
+            $comics = Comic::where('type', $search )->get();
+        } else{
+           $comics = Comic::all();
+        }
         return view("comics.index", compact("comics"));
     }
 
@@ -37,21 +48,23 @@ class ComicController extends Controller
      * @param  \Illuminate\Http\Request  $request
      *
      */
-    public function store(Request $request)
+    public function store(StoreComicRequest $request)
     {
         // andiamo a prendere tutti i dati del form
         //prendo i dati del form dalla request
 
-        $request->validate([
-            'title' => 'required|min:5|max:255',
-            'description' => 'required|nullable',
-            'price' => 'required|max:20',
-            'sale_date' => 'required',
-            'type' => 'required',
 
-        ]);
+        // $request->validate([
+        //     'title' => 'required|min:5|max:255',
+        //     'description' => 'required|nullable',
+        //     'price' => 'required|max:20',
+        //     'sale_date' => 'required',
+        //     'type' => 'required',
 
-        $formData = $request->all();
+        // ]);
+
+        // faccio la validazione dei dati passandoli
+        // $formData = $this->validation($request->all());
         // creao un nuovo prodotto
         // $new_comic = new Comic();
         // assegno i valori del form al nuovo prodotto
@@ -59,7 +72,7 @@ class ComicController extends Controller
         // salvo il nuovo prodotto
         // $new_comic->save();
 
-
+        $formData = $request->validated();
         $new_comic = Comic::create($formData);
         // reindirizzo l'utente alla pagina del nuovo prodotto appena creato
         return to_route('comics.show', $new_comic->id);
@@ -95,10 +108,19 @@ class ComicController extends Controller
      * @param  \App\Models\Comic  $comic
      *
      */
-    public function update(Request $request, Comic $comic)
+    public function update(UpdateComicRequest $request, Comic $comic)
     {
+        // $request->validate([
+        //     'title' => 'required|min:5|max:255',
+        //     'description' => 'required|nullable',
+        //     'price' => 'required|max:20',
+        //     'sale_date' => 'required',
+        //     'type' => 'required',
+
+        // ]);
         //
-        $formData = $request->all();
+        // $formData = $request->all();
+        // $formData = $this->validation($request->all());
         // $comic->title = $formData['title'];
         // $comic->description = $formData["description"];
         // $comic->thumb = $formData["thumb"];
@@ -106,7 +128,7 @@ class ComicController extends Controller
         // $comic->sale_date = $formData["sale_date"];
         // $comic->series = $formData["series"];
         // $comic->type = $formData["type"];
-
+        $formData = $request->validated();
         $comic->fill($formData);
         $comic->update();
         return to_route('comics.index', $comic->id);
@@ -125,4 +147,33 @@ class ComicController extends Controller
         $comic->delete();
         return to_route('comics.index')->with('message', "The item $comic->title deleted successfully");
     }
+
+    // errori nel redirect
+    //withInput
+    //withError
+    /**
+     * Summery of validation
+     *
+     */
+    // private function validation($data)
+    // {
+    //     // make costruisce una validazione
+    //     $validator = Validator::make($data, [
+
+    //         'title' => 'required|min:5|max:255',
+    //         'description' => 'required|nullable',
+    //         'price' => 'required|max:20',
+    //         'sale_date' => 'required',
+    //         'type' => 'required',
+    //     ],[
+    //         'title.required' => 'Il capo titolo è obbligatorio',
+    //         'title.min' => 'Il campo titolo deve avere almeno :min caratteri',
+    //         'title.max' => 'Il campo titolo deve avere massimo :max caratteri',
+
+
+
+    //     ])->validate();
+
+    //     return $validator;
+    // }
 }
